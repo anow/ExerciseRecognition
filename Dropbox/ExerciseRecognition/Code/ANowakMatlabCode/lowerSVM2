@@ -1,0 +1,68 @@
+newData1 = load('-mat', 'correctPatients.mat');
+
+% Create new variables in the base workspace from those fields.
+vars = fieldnames(newData1);
+
+rowNum = 1;
+
+
+sY = 100;
+sX = 18;
+
+herl0 = zeros(sY, sX);
+hel0 = herl0;
+hfl0 = herl0;
+kfl0 = herl0;
+afl0 = herl0;
+haal0 = herl0;
+
+a1 = 0;
+a2 = a1;
+a3 = a1;
+a4 = a1;
+a5 = a1;
+a6 = a1;
+
+
+for i = 1:length(vars)
+    if(strfind(char(vars{i}),'AF'))
+        a1 = a1+1;
+        aa = str2double(newData1.(vars{i}));
+        afl(a1, 1:18) = (aa(size(aa,1),1:18));
+        
+    end
+
+    
+    if(strfind(char(vars{i}),'EHR'))
+        a2 = a2+1;
+        aa = str2double(newData1.(vars{i}));
+        herl(a2,1:18) = (aa(size(aa,1),1:18));
+    else
+    
+        if(strfind(char(vars{i}),'HE'))
+            a3 = a3+1;
+            aa = str2double(newData1.(vars{i}));
+            hel(a3,1:18) = (aa(size(aa,1),1:18));
+        end
+    end
+    
+    if(strfind(char(vars{i}),'HF'))
+        a4 = a4+1;
+        aa = str2double(newData1.(vars{i}));
+        hfl(a4, 1:18) = (aa(size(aa,1),1:18));
+        
+    end
+    
+    if(strfind(char(vars{i}),'KF'))
+        a5 = a5+1;
+        aa = str2double(newData1.(vars{i}));
+        kfl(a5,1:18) = (aa(size(aa,1),1:18));
+    end
+    
+   if(strfind(char(vars{i}),'HAA'))
+       a6 = a6+1;
+       aa = str2double(newData1.(vars{i}));
+       haal(a6,1:18) = (aa(size(aa,1),1:18));
+   end
+   
+end
